@@ -1,0 +1,5 @@
+.fin-manager
+*.sqlite3
+*.pyc
+fin_manager/node-modules
+fin_manager/node_modules/

@@ -1,0 +1,23 @@
+/* .nav-menu{
+    display: flex;
+    align-items: center;
+    box-shadow: grey 2px;
+} */
+ 
+.menu-wrap{
+    display: flex;
+}
+.menu-item{
+    padding:0 5px;
+    margin-right: 10px;
+}
+.chart-wrap{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.totals-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

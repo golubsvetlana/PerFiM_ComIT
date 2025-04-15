@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+{% load static %}
+<h2>Account Summary</h2>
+
+<div class="chart-wrap">
+    <div class="totals-wrap">    
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <p><strong>Total Income:</strong> ${{ total_income }}</p>
+            <a class="btn btn-secondary" href="/income/">Detail income</a>
+        </div>
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <p><strong>Total Expenses:</strong> ${{ total_expenses }}</p>
+            <a class="btn btn-secondary" href="/expenses/">Detail expenses</a>
+         </div>
+            <p><strong>Saving:</strong> ${{ saving }}</p>              
+       
+
+        
+    </div>
+    <div style="width: 350px;">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <canvas id="financeChart" data-income="{{ total_income }}" data-expenses="{{ total_expenses }}"></canvas>
+        <script src="{% static 'js/chartCreate.js' %}"></script>
+        
+    </div>
+</div>
+{% endblock %}

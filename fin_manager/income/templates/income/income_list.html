@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}My Income{% endblock %}
+
+{% block content %}
+<h2>Income List</h2>
+<ul>
+    {% for income in incomes %}
+        <li>{{ income.source }} - ${{ income.amount }} ({{ income.category }}) on {{ income.date }}</li>
+    {% empty %}
+        <li>No income records yet.</li>
+    {% endfor %}
+</ul>
+<a  class="btn btn-secondary"  href="{% url 'add_income' %}">Add New Income</a>
+{% endblock %}

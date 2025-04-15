@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}My Expenses{% endblock %}
+
+{% block content %}
+    <h2>My Expenses</h1>
+    <ul>
+        {% for expense in expenses %}
+            <li>{{ expense.category }} - ${{ expense.amount }} ({{ expense.date }})</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-secondary" href="{% url 'add-expense' %}">Add new expense</a>
+    {% endblock %}
