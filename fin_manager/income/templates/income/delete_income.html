@@ -1,0 +1,13 @@
+{% extends 'base.html' %} 
+
+{% block title %}Delete-Income{% endblock %} 
+{% block content %}
+<h2>Confirm Delete</h2>
+<p>Are you sure you want to delete: {{ income }}?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+  <a href="{% url 'income-list' %}">Cancel</a>
+</form>
+
+{% endblock %}

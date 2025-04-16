@@ -6,8 +6,13 @@
     <h2>My Expenses</h1>
     <ul>
         {% for expense in expenses %}
-            <li>{{ expense.category }} - ${{ expense.amount }} ({{ expense.date }})</li>
+            <li>{{ expense.category }} - ${{ expense.amount }} ({{ expense.date }}) 
+                <div>
+                    <a class="btn btn-outline-secondary" href="{% url 'edit-expense' expense.id %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'delete-expense' expense.id %}">Delete</a>
+                </div>
+            </li>
         {% endfor %}
     </ul>
-    <a class="btn btn-secondary" href="{% url 'add-expense' %}">Add new expense</a>
+    <a class="btn btn-primary" href="{% url 'add-expense' %}">Add new expense</a>
     {% endblock %}

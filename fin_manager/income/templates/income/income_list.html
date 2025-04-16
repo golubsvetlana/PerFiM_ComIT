@@ -6,10 +6,16 @@
 <h2>Income List</h2>
 <ul>
     {% for income in incomes %}
-        <li>{{ income.source }} - ${{ income.amount }} ({{ income.category }}) on {{ income.date }}</li>
+        <li>
+            {{ income.source }} - ${{ income.amount }} ({{ income.category }}) on {{ income.date }}
+            <div>
+                <a class="btn btn-outline-secondary" href="{% url 'edit-income' income.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'delete-income' income.id %}">Delete</a>
+            </div>
+        </li>
     {% empty %}
         <li>No income records yet.</li>
     {% endfor %}
 </ul>
-<a  class="btn btn-secondary"  href="{% url 'add_income' %}">Add New Income</a>
+<a class="btn btn-primary" href="{% url 'add-income' %}">Add New Income</a>
 {% endblock %}
