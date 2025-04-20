@@ -4,12 +4,12 @@ from django.db import models
 
 class Income(models.Model):
     CATEGORY_CHOICES = [
-        ('salary', 'Salary'),
-        ('freelance', 'Freelance'),
-        ('business', 'Business'),
-        ('investment', 'Investment'),
-        ('social', 'Social'),
-        ('other', 'Other'),
+        ('Salary', 'Salary'),
+        ('Freelance', 'Freelance'),
+        ('Business', 'Business'),
+        ('Investment', 'Investment'),
+        ('Social', 'Social'),
+        ('Other', 'Other'),
     ]
 
     # user = models.ForeignKey(User, on_delete=models.CASCADE)

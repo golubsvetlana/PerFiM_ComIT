@@ -1,18 +1,68 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}My Expenses{% endblock %}
 
 {% block content %}
     <h2>My Expenses</h1>
-    <ul>
+    <!-- filter by categories, month, year -->
+    <form method="get" class="row g-3 mb-4 w-75">
+      <div class="col-md-4">
+          <label for="category" class="form-label">Filter by Category</label>
+          <select name="category" id="category" class="form-select">
+              <option value="">All</option>
+              {% for key, value in category_choices %}
+                  <option value="{{ key }}" {% if selected_category == key %}selected{% endif %}>{{ value }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="col-md-4">
+          <label for="month" class="form-label">Filter by Month</label>
+          <select name="month" id="month" class="form-select">
+              <option value="">All Months</option>
+              {% for value, label in months %}
+                  <option value="{{ value }}" {% if selected_month == value %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="col-md-4">
+        <label for="year" class="form-label">Filter by Year</label>
+        <select name="year" id="year" class="form-select">
+            <option value="">All Years</option>
+            {% for value, label in years %}
+                <option value="{{ value }}" {% if selected_year == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+      <div class="col-md-4 align-self-end">
+          <button type="submit" class="btn btn-primary">Apply Filters</button>
+          <a href="{% url 'expense-list' %}" class="btn btn-outline-secondary">Clear Filters</a>
+      </div>
+  </form>
+    <!--ed of filter  -->
+    <ul class="list-group">
+        {% if expenses %}
         {% for expense in expenses %}
-            <li>{{ expense.category }} - ${{ expense.amount }} ({{ expense.date }}) 
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ expense.date }} - {{ expense.category }} - ${{ expense.amount }}
                 <div>
-                    <a class="btn btn-outline-secondary" href="{% url 'edit-expense' expense.id %}">Edit</a>
-                    <a class="btn btn-danger" href="{% url 'delete-expense' expense.id %}">Delete</a>
+                    <a class="btn btn-outline-secondary  btn-sm" href="{% url 'edit-expense' expense.id %}">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'delete-expense' expense.id %}">Delete</a>
                 </div>
             </li>
-        {% endfor %}
+          {% empty %}
+            <li class="list-group-item">No expenses records yet.</li>
+          {% endfor %}
+        {% else %}
+        <li class="list-group-item">
+          <div class="alert alert-warning mb-0" role="alert">
+              No expenses found.
+          </div></li>
+      {% endif %}
+      
     </ul>
-    <a class="btn btn-primary" href="{% url 'add-expense' %}">Add new expense</a>
+    <div class="d-flex justify-content-between align-items-center">
+      <a class="btn btn-outline-danger btn-sm w-25 m-2 me-0" href="{% url 'add-expense' %}"><img src="{% static 'media/budget-pie-chart.png' %}" alt=""> Add New Expense </a>
+      <span><strong>Total expenses: </strong>${{ total_expenses }}</span> 
+    </div>
+
     {% endblock %}

@@ -7,3 +7,10 @@ class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense
         fields = ['category', 'amount', 'date', 'description']
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 1, "class": 'form-control'}),
+            "category": forms.Select(attrs={"class": 'form-select'}),
+            "amount":forms.NumberInput(attrs={"class": 'form-control'})
+            # "date": forms.DateInput(attrs={"class": 'form-control'})
+        }
+

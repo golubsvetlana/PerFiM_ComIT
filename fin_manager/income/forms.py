@@ -8,4 +8,9 @@ class IncomeForm(forms.ModelForm):
 
     class Meta:
         model = Income
-        fields = ['source', 'amount', 'category', 'date']
+        fields = ['category', 'amount', 'date','source']  
+        widgets = {
+            "source": forms.Textarea(attrs={"rows": 1, "class": 'form-control'}),
+            "category": forms.Select(attrs={"class": 'form-select'}),
+            "amount":forms.NumberInput(attrs={"class": 'form-control'})      
+        }

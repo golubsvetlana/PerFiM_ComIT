@@ -21,9 +21,9 @@ def main(request):
   saves = total_income - total_expenses
 
   context = {
-        'total_expenses': total_expenses,
-        'total_income': total_income,
-        'saving': saves
+        'total_expenses': round(total_expenses,2),
+        'total_income': round(total_income,2),
+        'saving': round(saves,2)
     }
 
   return render(request, 'dashboard.html', context)

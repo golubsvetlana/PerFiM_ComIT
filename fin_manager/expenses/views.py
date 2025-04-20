@@ -1,12 +1,53 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Expense
 from .forms import ExpenseForm
+from django.db.models import Sum
 
 
 def expense_list(request):
     expenses = Expense.objects.all()
     return render(request, "expenses/expense_list.html", {"expenses": expenses})
 
+def expenses_view(request):
+    selected_category = request.GET.get('category')
+    selected_month = request.GET.get('month')
+    selected_year = request.GET.get('year')
+
+    # Start with all expenses
+    expenses = Expense.objects.all()
+
+    # Apply filters one by one
+    if selected_category:
+        expenses = expenses.filter(category=selected_category)
+
+    if selected_month:
+        expenses = expenses.filter(date__month=int(selected_month))
+
+    if selected_year:
+        expenses = expenses.filter(date__year=int(selected_year))
+
+    # Total after filters
+    total_expenses = expenses.aggregate(total=Sum('amount'))['total'] or 0
+
+    context = {
+        'total_expenses': round(total_expenses, 2),
+        'expenses': expenses,
+        'category_choices': Expense.CATEGORY_CHOICES,
+        'selected_category': selected_category,
+        'selected_month': selected_month,
+        'selected_year': selected_year,
+        'months': [
+            ('01', 'January'), ('02', 'February'), ('03', 'March'),
+            ('04', 'April'), ('05', 'May'), ('06', 'June'),
+            ('07', 'July'), ('08', 'August'), ('09', 'September'),
+            ('10', 'October'), ('11', 'November'), ('12', 'December')
+        ],
+        'years': [
+            ('2024', '2024'), ('2025', '2025')
+        ]
+    }
+
+    return render(request, 'expenses/expense_list.html', context)
 
 def add_expense(request):
     if request.method == "POST":
