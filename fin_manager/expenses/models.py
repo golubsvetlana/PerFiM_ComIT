@@ -3,14 +3,14 @@ from django.db import models
 
 class Expense(models.Model):
     CATEGORY_CHOICES = [
-        ('food', 'Food'),
-        ('health', 'Health'),
-        ('beauty', 'Beauty'),
-        ('entertainment', 'Entertainment'),
-        ('study', 'Study'),
-        ('rent', 'Rent'),
-        ('utility', 'Utility'),
-        ('transport', 'Transport')
+        ('Food', 'Food'),
+        ('Health', 'Health'),
+        ('Beauty', 'Beauty'),
+        ('Entertainment', 'Entertainment'),
+        ('Study', 'Study'),
+        ('Rent', 'Rent'),
+        ('Utility', 'Utility'),
+        ('Transport', 'Transport')
     ]
 
     name = models.CharField(max_length=255, default='other')
