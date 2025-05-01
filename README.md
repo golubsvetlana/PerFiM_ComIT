@@ -10,6 +10,18 @@ This project would focus on helping users track their financial data, including 
 
 _Income/Expense Tracking_: Users can log their income and expenses, categorizing them (e.g., groceries, entertainment, rent).
 
-_Data Visualization_: Graphs and charts that display income vs. expenses.
+_Filtering_: User can filter total expenses and incomes (by years) on a dashboard, and wider filters with category and month/years
 
-_Reports_: Monthly or yearly financial reports that show how much was earned, spent, and saved.
+_Data Visualization_: Chart that display income vs. expenses.
+
+# Future improvements:
+ - Authorization process (login, registration, logout, change password, password restore)
+ - Report generating (month, year)
+
+# Technical Stack:
+ - Django
+ - Bootstrap
+ - HTML, CSS
+ - SQLite 
+
+
