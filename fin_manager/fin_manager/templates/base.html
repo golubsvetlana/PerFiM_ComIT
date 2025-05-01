@@ -22,6 +22,11 @@
                         <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="/income">Income</a></li>
                         <li class="nav-item"><a class="nav-link" href="/expenses">Expenses</a></li>
+                        <!-- {% if user.is_authenticated %}
+                            <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+                            {% else %}
+                            <a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a>
+                        {% endif %} -->
                     </ul>
                 </div>
             </div>

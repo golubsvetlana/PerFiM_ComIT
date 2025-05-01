@@ -10,7 +10,8 @@ class Expense(models.Model):
         ('Study', 'Study'),
         ('Rent', 'Rent'),
         ('Utility', 'Utility'),
-        ('Transport', 'Transport')
+        ('Transport', 'Transport'),
+        ('Tax','Tax')
     ]
 
     name = models.CharField(max_length=255, default='other')

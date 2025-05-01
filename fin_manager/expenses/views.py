@@ -2,16 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Expense
 from .forms import ExpenseForm
 from django.db.models import Sum
-
+from datetime import datetime
+# from django.contrib.auth.decorators import login_required
 
 def expense_list(request):
     expenses = Expense.objects.all()
     return render(request, "expenses/expense_list.html", {"expenses": expenses})
-
+# @login_required
 def expenses_view(request):
     selected_category = request.GET.get('category')
     selected_month = request.GET.get('month')
     selected_year = request.GET.get('year')
+    current_year = datetime.now().year
 
     # Start with all expenses
     expenses = Expense.objects.all()
@@ -43,7 +45,9 @@ def expenses_view(request):
             ('10', 'October'), ('11', 'November'), ('12', 'December')
         ],
         'years': [
-            ('2024', '2024'), ('2025', '2025')
+            (current_year-2, current_year-2),
+            (current_year-1, current_year-1), 
+            (current_year, current_year)
         ]
     }
 
